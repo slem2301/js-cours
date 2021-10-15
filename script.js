@@ -8,8 +8,8 @@
 // obj.a = 10;
 // console.log(obj);
 
-
-//практический урок 12
+'use strict';
+//практический урок 2, 18
 
 //1
 const numberOfFilms = prompt('Сколько фильмов вы уже посмотрели?', '');
@@ -25,11 +25,16 @@ const personalMovieDB = {
 
 // 3
 
-const a = prompt('Один из последних фильмов', ''),
-      b =  prompt('На сколько оцениет его?', ''), 
-      c =  prompt('Один из последних фильмов', ''), 
-      d =  prompt('На сколько оцениет его?', '');
 
-personalMovieDB.movies[a] = b;
-personalMovieDB.movies[c] = d;
-console.log(personalMovieDB.movies);
+
+for (let i = 0; i < 2; i++) {
+    const a = prompt('Один из последних фильмов', ''),
+        b = prompt('На сколько оцениет его?', '');
+
+    if (a != null && b != null && a != '' && b != '' && a.length < 50){
+        personalMovieDB.movies[a] = b;
+        console.log('done');
+    }
+
+}
+console.log(personalMovieDB);
