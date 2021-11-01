@@ -42,14 +42,14 @@ genre.textContent = 'драма';
 //3)
 poster.style.cssText = 'background: url(img/bg.jpg)  center center/cover no-repeat';
 
-// 4)
+// 4) и 5)
 movieList.innerHTML = "";
 movieDB.movies.sort();
 
 movieDB.movies.forEach((film, i) => {
     movieList.innerHTML += `
     <li class="promo__interactive-item">
-        ${i+1}. ${film}
+        ${i + 1}. ${film}
         <div class="delete"></div>
     </li>
     `;
