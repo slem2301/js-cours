@@ -263,77 +263,175 @@ personalMovieDB
 "Любимый жанр #(номер по порядку, начиная с 1) - это название из массива"
 */
 
-const personalMovieDB = {
-    count: 0,
-    movies: {},
-    actors: {},
-    genres: [],
-    privat: false,
-    start() {
-        personalMovieDB.count = +prompt('Сколько фильмов вы уже посмотрели?', '');
-        while (personalMovieDB.count == '' || personalMovieDB.count == null || isNaN(personalMovieDB.count)) {
-            personalMovieDB.count = +prompt('Сколько фильмов вы уже посмотрели?', '');
-        }
-    },
-    rememberMyFilms() {
-        for (let i = 0; i < 2; i++) {
-            const a = prompt('Один из последних фильмов', ''),
-                b = prompt('На сколько оцениет его?', '');
+// const personalMovieDB = {
+//     count: 0,
+//     movies: {},
+//     actors: {},
+//     genres: [],
+//     privat: false,
+//     start() {
+//         personalMovieDB.count = +prompt('Сколько фильмов вы уже посмотрели?', '');
+//         while (personalMovieDB.count == '' || personalMovieDB.count == null || isNaN(personalMovieDB.count)) {
+//             personalMovieDB.count = +prompt('Сколько фильмов вы уже посмотрели?', '');
+//         }
+//     },
+//     rememberMyFilms() {
+//         for (let i = 0; i < 2; i++) {
+//             const a = prompt('Один из последних фильмов', ''),
+//                 b = prompt('На сколько оцениет его?', '');
     
-            if (a != null && b != null && a != '' && b != '' && a.length < 50){
-                personalMovieDB.movies[a] = b;
-                console.log('done');
-            } else {
-                console.log('error');
-                i--;
-            }
-        }
-    },
-    detectPersonalLevel() {
-        if (personalMovieDB.count < 10 && personalMovieDB){
-            console.log('просмотренно довольно мало фильмов');
-        } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30){
-            console.log('Вы классный зритель');
-        } else if (personalMovieDB.count >= 30){
-            console.log('Вы киноман');
-        } else {
-            console.log('Произошла ошибка');
-        }
-    },
-    showMyDB(hidden) {
-        if(!hidden){
-            console.log(personalMovieDB);
-        }
-    },
-    writeYourGenres() {
-        for(let i = 1; i <= 3; i++){
-            let genre = prompt(`Ваш любимый жанр под номером ${i}`, '');
+//             if (a != null && b != null && a != '' && b != '' && a.length < 50){
+//                 personalMovieDB.movies[a] = b;
+//                 console.log('done');
+//             } else {
+//                 console.log('error');
+//                 i--;
+//             }
+//         }
+//     },
+//     detectPersonalLevel() {
+//         if (personalMovieDB.count < 10 && personalMovieDB){
+//             console.log('просмотренно довольно мало фильмов');
+//         } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30){
+//             console.log('Вы классный зритель');
+//         } else if (personalMovieDB.count >= 30){
+//             console.log('Вы киноман');
+//         } else {
+//             console.log('Произошла ошибка');
+//         }
+//     },
+//     showMyDB(hidden) {
+//         if(!hidden){
+//             console.log(personalMovieDB);
+//         }
+//     },
+//     writeYourGenres() {
+//         for(let i = 1; i <= 3; i++){
+//             let genre = prompt(`Ваш любимый жанр под номером ${i}`, '');
             
-            if (genre === '' || genre == null){
-                console.log('Вы ввели некорректные данные или не ввели их вообще');
-                i--;
-            } else {
-                personalMovieDB.genres[i-1] = genre;
-            }
-        }
-        personalMovieDB.genres.forEach((item, i) => {
-            console.log(`Любимый жанр ${i + 1} - это ${item}`);
-        });
-    },
-    toggleVisibleMyDB() {
-        if (personalMovieDB.privat){
-            personalMovieDB.privat = false;
-        } else {
-            personalMovieDB.privat = true;
-        }
-    }
-};
+//             if (genre === '' || genre == null){
+//                 console.log('Вы ввели некорректные данные или не ввели их вообще');
+//                 i--;
+//             } else {
+//                 personalMovieDB.genres[i-1] = genre;
+//             }
+//         }
+//         personalMovieDB.genres.forEach((item, i) => {
+//             console.log(`Любимый жанр ${i + 1} - это ${item}`);
+//         });
+//     },
+//     toggleVisibleMyDB() {
+//         if (personalMovieDB.privat){
+//             personalMovieDB.privat = false;
+//         } else {
+//             personalMovieDB.privat = true;
+//         }
+//     }
+// };
 
 
-// personalMovieDB.rememberMyFilms();
-// personalMovieDB.detectPersonalLevel();
-// personalMovieDB.showMyDB();
-// personalMovieDB.writeYourGenres();
-// personalMovieDB.start();
-personalMovieDB.toggleVisibleMyDB();
-// personalMovieDB.showMyDB();
+// // personalMovieDB.rememberMyFilms();
+// // personalMovieDB.detectPersonalLevel();
+// // personalMovieDB.showMyDB();
+// // personalMovieDB.writeYourGenres();
+// // personalMovieDB.start();
+// personalMovieDB.toggleVisibleMyDB();
+// // personalMovieDB.showMyDB();
+
+
+
+// Урок 27, задачи на собеседования
+
+// 1) let x = 5; alert( x++ ); // выведет 5
+// 2) [ ] + false - null + true
+// console.log([ ] + false); // выведет "false" строку, динамическая типизация приводит к строковому типу
+// console.log([ ] + false - null); // NaN
+// console.log([ ] + false - null + true); // NaN
+
+// // 3) 
+// let y = 1; 
+// let x = y = 2; 
+// console.log(x);
+
+// 4)
+// console.log([] + 1 + 2); //"12", пусто массив приводится к пустой строке, и последующие цифры преобразуются в строки
+
+// 5) 
+// console.log("1"[0]); // "1". элемент строки по индексу 0
+
+// 6)
+// console.log(2 && 1 && null && 0 && undefined); // как только оператор и && встречает ложное условие
+//, он выводит его значение. запинается на лжи
+
+// 7)
+
+// console.log(!!( 1 && 2) === (1 && 2));  // выведет false, потому что оператор !! превращает выр в булиновое
+
+// 8)
+// console.log(null || 2 && 3 || 4); // выведет 3. && имеет более высокий приоритет
+// поэтому && выполняется первым. а оператор || запинается на правдивом выражении.
+
+// 9) 
+// const a = [1, 2, 3], b = [1, 2, 3];
+// console.log(a == b);// false массивы никогда не равны друг другу, как и объекты.
+
+//10)
+// alert(+"Infinity");// выведет Infinity, тип числовой(бесконечность)
+
+//11) 
+// console.log("Ёжик" > "яблоко"); // false, посимвольное сравнение, смотреть надо через таблицу юникода
+
+// //12)
+// console.log(0 || "" || 2 || undefined || true || false); // 2( || запнется на правде)
+
+
+
+
+//Урок 29
+
+const box = document.getElementById('box'),
+      btns = document.getElementsByTagName('button'),
+      circles = document.getElementsByClassName('circle'),
+      hearts = document.querySelectorAll('.heart'),
+      oneHeart = document.querySelector('.heart'),
+      wrapper = document.querySelector('.wrapper');
+
+// box.style.backgroundColor = 'blue';
+// box.style.width = '500px';
+
+box.style.cssText = 'background-color: black; width: 500px;';
+
+btns[1].style.borderRadius = '100%';
+
+// for (let i = 0; i < hearts.length; i++){
+//     hearts[i].style.backgroundColor = 'black';
+// }
+hearts.forEach(item => {
+    item.style.backgroundColor = 'blue';
+});
+
+const div = document.createElement('div');
+const text = document.createTextNode('Тут был Я');
+
+div.classList.add('black');
+
+wrapper.append(div);  //вставить в конец элемента
+// wrapper.appendChild(div); старый вариант
+
+//wrapper.prepend(div);  // вставить в начало элемента
+// hearts[0].before(div); //вставить перед элементом
+// hearts[0].after(div);  //вставить после элемента
+// wrapper.insertBefore(div, hearts[2]); //старый вариант вставки перед элементом
+
+
+
+// // circles[0].remove(); удалает элемент
+// // wrapper.removeChild(hearts[2]);//удалает элемент старый вариант
+
+// // hearts[0].replaceWith(circles[0]); // заменяет
+// wrapper.replaceChild(circles[0], hearts[0]);// заменяет элемент, старый вариант
+
+div.innerHTML = "<h1>Hello, world!</h1>"; // помещает html код в структуру страницы
+// div.textContent = "<h1>Hello, world!</h1>"; // помещает текст в структуру страницы
+
+div.insertAdjacentHTML('afterend', '<h2>Hello</h2>'); // позволяет вставлять html код в различные места от блока
